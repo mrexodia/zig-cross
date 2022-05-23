@@ -1,0 +1,8 @@
+# Reference: https://build-cpp.github.io/cmkr/cmake-toml
+[project]
+name = "zig--cross"
+
+[target.zig--cross]
+type = "executable"
+sources = ["src/zig--cross/main.cpp"]
+compile-features = ["cxx_std_11"]
