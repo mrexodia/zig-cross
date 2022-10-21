@@ -1,0 +1,11 @@
+bin
+bin2
+compile_commands.json
+.clangd
+temp.*
+.vs
+.cache
+build*/
+.idea/
+cmake-build*/
+CMakeLists.txt.user
