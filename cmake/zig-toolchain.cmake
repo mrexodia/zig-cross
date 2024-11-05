@@ -18,8 +18,12 @@ elseif(ZIG_OS STREQUAL "windows")
     set(CMAKE_SYSTEM_NAME "Windows")
 elseif(ZIG_OS STREQUAL "macos")
     set(CMAKE_SYSTEM_NAME "Darwin")
+elseif(ZIG_OS STREQUAL "freestanding")
+    set(CMAKE_SYSTEM_NAME "Generic")
 else()
-    message(WARNING "Unknown OS: ${ZIG_OS}")
+    # NOTE: If this happens, add a new case with one of the following system names:
+    # https://cmake.org/cmake/help/latest/variable/CMAKE_SYSTEM_NAME.html#system-names-known-to-cmake
+    message(FATAL_ERROR "Unknown OS: ${ZIG_OS}")
 endif()
 
 set(CMAKE_SYSTEM_VERSION 1)
