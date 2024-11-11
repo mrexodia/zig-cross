@@ -20,6 +20,10 @@ elseif(ZIG_OS STREQUAL "macos")
     set(CMAKE_SYSTEM_NAME "Darwin")
 elseif(ZIG_OS STREQUAL "freestanding")
     set(CMAKE_SYSTEM_NAME "Generic")
+elseif(ZIG_OS STREQUAL "uefi")
+    set(CMAKE_SYSTEM_NAME "UEFI")
+    # Fix compiler detection (lld-link: error: <root>: undefined symbol: EfiMain)
+    set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 else()
     # NOTE: If this happens, add a new case with one of the following system names:
     # https://cmake.org/cmake/help/latest/variable/CMAKE_SYSTEM_NAME.html#system-names-known-to-cmake
@@ -42,3 +46,6 @@ endif()
 set(CMAKE_AR "${CMAKE_CURRENT_LIST_DIR}/zig-ar${SCRIPT_SUFFIX}")
 set(CMAKE_RANLIB "${CMAKE_CURRENT_LIST_DIR}/zig-ranlib${SCRIPT_SUFFIX}")
 set(CMAKE_RC_COMPILER "${CMAKE_CURRENT_LIST_DIR}/zig-rc${SCRIPT_SUFFIX}")
+
+# Add custom UEFI platform to module path
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}")
