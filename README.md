@@ -30,7 +30,7 @@ Additionally you need to pass pass the following arguments to `clangd`:
 ```json
 "clangd.arguments": [
     "--log=verbose",
-    "--query-driver=*/clang-cl.exe,*/zig-cc.*,*/zig-c++.*,*/em++.bat,*/emcc.bat,*/em++,*/emcc",
+    "--query-driver=**/zig-cc.cmd,**/zig-cc,**/zig-c++.cmd,**/zig-c++",
 ]
 ```
 
