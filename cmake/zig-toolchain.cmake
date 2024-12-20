@@ -4,8 +4,16 @@ if(CMAKE_GENERATOR MATCHES "Visual Studio")
     message(FATAL_ERROR "Visual Studio generator not supported, use: cmake -G Ninja")
 endif()
 
+if(NOT DEFINED ZIG_TARGET)
+    get_filename_component(PARENT_LIST_DIR "${CMAKE_PARENT_LIST_FILE}" DIRECTORY)
+    string(FIND "${CMAKE_CURRENT_LIST_DIR}" "${PARENT_LIST_DIR}" POS)
+    if(POS EQUAL 0)
+        get_filename_component(ZIG_TARGET "${CMAKE_PARENT_LIST_FILE}" NAME_WE)
+    endif()
+endif()
+
 if(NOT ZIG_TARGET MATCHES "^([a-zZ-Z0-9_]+)-([a-zZ-Z0-9_]+)-([a-zZ-Z0-9_]+)$")
-    message(FATAL_ERROR "Expected -DZIG_TARGET=<arch>-<os>-<abi>")
+    message(FATAL_ERROR "Expected ZIG_TARGET=<arch>-<os>-<abi>")
 endif()
 
 set(ZIG_ARCH ${CMAKE_MATCH_1})
