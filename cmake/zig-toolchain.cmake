@@ -32,6 +32,10 @@ elseif(ZIG_OS STREQUAL "uefi")
     set(CMAKE_SYSTEM_NAME "UEFI")
     # Fix compiler detection (lld-link: error: <root>: undefined symbol: EfiMain)
     set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
+elseif(ZIG_OS STREQUAL "wasi")
+    set(CMAKE_SYSTEM_NAME "WASI")
+elseif(ZIG_OS STREQUAL "emscripten")
+    set(CMAKE_SYSTEM_NAME "Emscripten")
 else()
     # NOTE: If this happens, add a new case with one of the following system names:
     # https://cmake.org/cmake/help/latest/variable/CMAKE_SYSTEM_NAME.html#system-names-known-to-cmake
